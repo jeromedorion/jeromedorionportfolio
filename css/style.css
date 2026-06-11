@@ -178,20 +178,18 @@ h1, h2, h3 {
 .barre-laterale .contact {
   /* texte vertical, se lit de haut en bas */
   writing-mode: vertical-rl;
-  font-family: var(--police-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 1rem;
+  /* même typo que la navigation du haut, en minuscules */
+  font-family: var(--police-texte);
+  font-size: 0.95rem;
   transition: color 0.2s ease;
 }
 
 .barre-laterale .langue {
-  /* même orientation verticale que Contact, sans encadré */
+  /* même orientation verticale et même typo que Contact, en minuscules */
   writing-mode: vertical-rl;
-  font-family: var(--police-accent);
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
+  font-family: var(--police-texte);
+  font-size: 0.95rem;
+  text-transform: lowercase;
   transition: color 0.2s ease;
 }
 

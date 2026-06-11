@@ -167,9 +167,11 @@
       <p>Notre solution se nomme Rémi. Présent dans le logement de la personne atteinte d'Alzheimer, il écoute activement les conversations entre celle-ci et le proche aidant. Grâce à un algorithme, il génère chaque jour une rétrospective simple et claire qui résume les moments clés, identifie les enjeux rencontrés et propose des conseils adaptés à chaque situation unique, pour que le proche aidant se sente le plus outillé possible dans un rôle qui évolue sans cesse.</p>
       <p>Rémi peut également être sollicité à un moment précis de la journée, que ce soit pour répondre à une question importante ou pour accompagner un moment difficile. Il est entièrement contrôlé par le proche aidant, qui choisit quand l'activer selon son confort, grâce à des contrôles complets sur la lampe et dans l'application.</p>
 
+      <!-- Vidéos d'animation : lecture automatique à l'apparition dans
+           l'écran, sans contrôles (gérées par js/main.js) -->
       <div class="grille-images" style="margin-top:1.5rem;">
-        <video controls preload="metadata" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-1.mp4"></video>
-        <video controls preload="metadata" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-2.mp4"></video>
+        <video class="video-defilement" muted playsinline preload="auto" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-1.mp4"></video>
+        <video class="video-defilement" muted playsinline preload="auto" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-2.mp4"></video>
       </div>
 
       <img src="../assets/remi/interface.png" alt="Interface de Rémi" style="margin-top:1.25rem;">

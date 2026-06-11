@@ -49,3 +49,29 @@ const annee = document.querySelector("[data-annee]");
 if (annee) {
   annee.textContent = new Date().getFullYear();
 }
+
+// ==========================================================
+// Vidéos d'animation (.video-defilement)
+// Lecture automatique quand la vidéo entre dans l'écran,
+// pause quand elle en sort, et reprise du début à chaque retour.
+// ==========================================================
+const videos = document.querySelectorAll(".video-defilement");
+
+if (videos.length > 0 && "IntersectionObserver" in window) {
+  const observateurVideos = new IntersectionObserver(
+    (entrees) => {
+      entrees.forEach((entree) => {
+        const video = entree.target;
+        if (entree.isIntersecting) {
+          video.currentTime = 0; // on repart du début à chaque apparition
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.4 } // démarre quand 40 % de la vidéo est visible
+  );
+
+  videos.forEach((v) => observateurVideos.observe(v));
+}

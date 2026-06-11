@@ -40,6 +40,14 @@ Site original : https://jeromedorionportfolio.framer.website/
 - `photos-a-trier/` contient les originaux de Jérôme, dont certains
   pas encore utilisés sur le site — ne pas supprimer.
 
+## Publication (état)
+
+- Dépôt Git créé et publié sur GitHub via GitHub Desktop.
+- Flux de travail : modifications → Changes → Commit to main → Push origin.
+- Reste à faire quand le site sera prêt : activer GitHub Pages
+  (Settings → Pages → Deploy from a branch → main → root),
+  puis éventuellement acheter un nom de domaine personnalisé.
+
 ## Développement
 
 Ouvrir `index.html` avec Live Server (VS Code) pour le rechargement automatique.
