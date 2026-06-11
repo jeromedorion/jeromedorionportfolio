@@ -1,0 +1,555 @@
+/* ==========================================================
+   PORTFOLIO — JÉRÔME DORION
+   Feuille de style principale
+   Structure :
+   1. Variables & reset
+   2. Typographie
+   3. Navigation
+   4. Hero (accueil)
+   5. Section projets
+   6. Section à propos
+   7. Pied de page
+   8. Pages projets
+   9. Animations & responsive
+   ========================================================== */
+
+/* ----- 1. Variables & reset ----- */
+:root {
+  --papier: #ffffff;        /* fond principal, blanc pur */
+  --encre: #111111;         /* texte principal, noir */
+  --encre-douce: #666666;   /* texte secondaire, gris neutre */
+  --accent: #111111;        /* accent : noir (palette noir et blanc) */
+  --ligne: #e6e6e6;         /* bordures fines, gris pâle */
+  --carte: #ffffff;         /* fond des cartes */
+
+  --police-titre: "Manrope", sans-serif;
+  --police-texte: "Manrope", sans-serif;
+  --police-accent: "IBM Plex Mono", monospace;
+
+  --largeur-max: 1360px; /* contenu plus large, marges réduites */
+  --rayon: 0; /* coins carrés partout, style droit et neutre */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--police-texte);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  /* espace réservé pour la barre latérale fixe à droite */
+  padding-right: 96px;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+  border-radius: var(--rayon);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.conteneur {
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ----- 2. Typographie ----- */
+h1, h2, h3 {
+  font-family: var(--police-titre);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.titre-section {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.titre-section::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ligne);
+}
+
+/* Classe neutralisée : les mots marqués suivent maintenant
+   le texte courant (aucune mise en évidence typographique). */
+.accent-serif {
+  font: inherit;
+  color: inherit;
+}
+
+/* ----- 3. Navigation ----- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--papier) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ligne);
+}
+
+.nav-inner {
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 28px 24px; /* navigation plus aérée verticalement */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* JD et le rôle rapprochés */
+}
+
+.nav-logo {
+  font-family: var(--police-titre);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.nav-role {
+  color: var(--encre-douce);
+  font-size: 0.9rem;
+  border-left: 1px solid var(--ligne);
+  padding-left: 0.75rem;
+}
+
+.nav-liens {
+  margin-left: auto;
+  display: flex;
+  gap: 2.75rem; /* liens de navigation plus aérés */
+  font-size: 0.95rem;
+}
+
+.nav-liens a {
+  position: relative;
+}
+
+.nav-liens a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav-liens a:hover::after {
+  width: 100%;
+}
+
+/* ----- Barre latérale fixe (Contact + EN) ----- */
+/* Toujours visible à droite, elle suit le défilement. */
+.barre-laterale {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 96px;
+  z-index: 100;
+  background: var(--encre);
+  color: var(--papier);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* Contact et EN proches des extrémités, avec un léger retrait */
+  padding: 3.5rem 0;
+}
+
+.barre-laterale .contact {
+  /* texte vertical, se lit de haut en bas */
+  writing-mode: vertical-rl;
+  font-family: var(--police-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.barre-laterale .langue {
+  /* même orientation verticale que Contact, sans encadré */
+  writing-mode: vertical-rl;
+  font-family: var(--police-accent);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  transition: color 0.2s ease;
+}
+
+.barre-laterale .contact:hover {
+  color: #999999; /* gris au survol, sur fond noir */
+}
+
+.barre-laterale .langue:hover {
+  color: #999999; /* gris au survol, comme Contact */
+}
+
+/* ----- 4. Hero ----- */
+.hero {
+  padding: clamp(5rem, 12vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
+  text-align: center; /* nom et phrase centrés */
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 800;
+  white-space: nowrap; /* le nom reste sur une seule ligne */
+}
+
+.hero-phrase {
+  max-width: 620px;
+  margin: 1.75rem auto 0; /* centrée sous le nom */
+  font-size: 1.2rem;
+  color: var(--encre-douce);
+}
+
+/* ----- 5. Section projets ----- */
+.section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+.grille-projets {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.carte-projet {
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  overflow: hidden; /* la photo épouse les coins arrondis */
+  display: grid;
+  grid-template-columns: minmax(260px, 42%) 1fr; /* photo à gauche, texte à droite */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.carte-projet:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.08);
+}
+
+.carte-projet .vignette {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.4s ease;
+}
+
+.carte-projet:hover .vignette {
+  transform: scale(1.03);
+}
+
+.carte-contenu {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Nom du projet : l'élément le plus gros de la carte */
+.carte-projet .client {
+  font-family: var(--police-titre);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+/* Question : plus petite, en gris */
+.carte-projet .question {
+  font-size: 1.05rem;
+  color: var(--encre-douce);
+}
+
+.carte-projet .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  font-family: var(--police-accent);
+  font-size: 0.78rem;
+  border: 1px solid var(--ligne);
+  padding: 4px 12px;
+  color: var(--encre-douce);
+}
+
+.carte-projet .duree-lecture {
+  margin-top: auto; /* poussée au bas de la carte */
+  padding-top: 1rem;
+  font-family: var(--police-accent);
+  font-size: 0.9rem;
+  color: var(--encre-douce);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* espace entre l'icône de livre et le texte */
+}
+
+.carte-projet .duree-lecture svg {
+  flex-shrink: 0;
+}
+
+/* ----- 6. À propos ----- */
+.a-propos p {
+  max-width: 720px;
+  font-size: 1.15rem;
+}
+
+/* ----- 7. Pied de page ----- */
+.footer {
+  border-top: 1px solid var(--ligne);
+  padding: 3rem 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.footer h5 {
+  font-family: var(--police-accent);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--encre-douce);
+  margin-bottom: 0.4rem;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+.footer-inner {
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between; /* premier bloc collé à gauche, dernier à droite */
+  align-items: flex-start;
+}
+
+/* Le bloc de droite s'aligne sur la marge droite */
+.footer-inner > div:last-child {
+  text-align: right;
+}
+
+/* ----- 8. Pages projets ----- */
+.projet-hero {
+  padding-top: 3rem;
+}
+
+.projet-hero img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.projet-titre {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  margin: 2.5rem 0 2rem;
+}
+
+.meta-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--ligne);
+  border-bottom: 1px solid var(--ligne);
+  margin-bottom: 3rem;
+}
+
+.meta-grille h4 {
+  font-family: var(--police-accent);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.meta-grille p {
+  font-size: 0.95rem;
+  color: var(--encre-douce);
+}
+
+.bloc {
+  margin-bottom: 3.5rem;
+}
+
+.bloc h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 1.25rem;
+}
+
+.bloc h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bloc p + p {
+  margin-top: 1rem;
+}
+
+.bloc ul {
+  padding-left: 1.25rem;
+}
+
+.bloc li + li {
+  margin-top: 0.5rem;
+}
+
+.grille-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.mini-carte {
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  padding: 1.5rem;
+}
+
+.mini-carte .numero {
+  font-family: var(--police-accent);
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.stat {
+  background: var(--encre);
+  color: var(--papier);
+  border-radius: var(--rayon);
+  padding: 1.5rem;
+}
+
+.stat .chiffre {
+  font-family: var(--police-accent);
+  font-weight: 600;
+  font-size: 2.4rem;
+  color: var(--papier); /* blanc sur fond noir */
+}
+
+.stat p {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+}
+
+.grille-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.bloc img + img,
+.bloc figure + figure {
+  margin-top: 1.25rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--encre-douce);
+}
+
+/* Navigation entre projets */
+.autres-projets {
+  border-top: 1px solid var(--ligne);
+  padding: 3rem 0;
+}
+
+.autres-projets .liens {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.autres-projets .liens a {
+  font-family: var(--police-titre);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  transition: color 0.2s ease;
+}
+
+.autres-projets .liens a:hover {
+  color: var(--accent);
+}
+
+/* ----- 9. Animations & responsive ----- */
+/* L'animation ne s'active que si le JS a pu marquer <html> avec .js :
+   sans JavaScript, tout le contenu reste visible (sécurité). */
+html.js .reveler {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+html.js .reveler.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 720px) {
+  /* Sur mobile, la barre latérale devient une barre fixe en bas */
+  body {
+    padding-right: 0;
+    padding-bottom: 64px;
+  }
+
+  .barre-laterale {
+    top: auto;
+    left: 0;
+    width: auto;
+    height: 64px;
+    flex-direction: row;
+    padding: 0 1.5rem;
+  }
+
+  .barre-laterale .contact,
+  .barre-laterale .langue {
+    writing-mode: horizontal-tb;
+  }
+
+  .nav-role,
+  .nav-liens .masquer-mobile {
+    display: none;
+  }
+
+  /* Sur mobile : photo au-dessus, texte en dessous */
+  .carte-projet {
+    grid-template-columns: 1fr;
+  }
+
+  .carte-projet .vignette {
+    aspect-ratio: 16 / 10;
+  }
+}
