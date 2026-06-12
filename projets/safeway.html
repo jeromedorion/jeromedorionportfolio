@@ -34,12 +34,15 @@
     <a class="langue" href="#" title="English version — à venir">EN</a>
   </aside>
 
-  <main class="conteneur">
-
-    <!-- ===== En-tête du projet ===== -->
-    <section class="projet-hero">
-      <img src="../assets/safeway/hero.png" alt="Projet Safeway">
+  <!-- ===== En-tête : photo pleine largeur, titre sur l'image ===== -->
+  <section class="projet-hero">
+    <img src="../assets/safeway/hero.png" alt="Projet Safeway">
+    <div class="conteneur">
       <h1 class="projet-titre">Une évacuation repensée</h1>
+    </div>
+  </section>
+
+  <main class="conteneur">
 
       <div class="meta-grille">
         <div>
@@ -63,7 +66,12 @@
           <p>Projet réalisé dans le cadre d'un cours à la maîtrise en design d'interaction de l'Université Laval.</p>
         </div>
       </div>
-    </section>
+
+      <!-- Sommaire collant à gauche (rempli automatiquement par js/main.js)
+           + contenu du projet à droite -->
+      <div class="corps-projet">
+        <nav class="sommaire" aria-label="Sections de la page"></nav>
+        <div class="contenu-projet">
 
     <!-- ===== Mise en contexte ===== -->
     <section class="bloc reveler">
@@ -135,6 +143,9 @@
       <img src="../assets/safeway/ecran-4.png" alt="Safeway — écran 4">
     </section>
 
+        </div>
+      </div>
+
   </main>
 
   <!-- ===== Autres projets ===== -->
@@ -142,8 +153,8 @@
     <div class="conteneur">
       <h3 class="titre-section">Voir un autre projet</h3>
       <div class="liens">
-        <a href="remi.html">Rémi</a>
-        <a href="radio-canada.html">Radio-Canada</a>
+        <a class="projet-precedent" href="remi.html"><span class="fleche">←</span>Rémi</a>
+        <a class="projet-suivant" href="radio-canada.html">Radio-Canada<span class="fleche">→</span></a>
       </div>
     </div>
   </section>
@@ -157,4 +168,11 @@
       </div>
       <div>
         <h5>Tous droits réservés</h5>
-        <p>© <spa
+        <p>© <span data-annee></span> Jérôme Dorion</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

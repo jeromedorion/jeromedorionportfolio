@@ -34,12 +34,15 @@
     <a class="langue" href="#" title="English version — à venir">EN</a>
   </aside>
 
-  <main class="conteneur">
-
-    <!-- ===== En-tête du projet ===== -->
-    <section class="projet-hero">
-      <img src="../assets/remi/hero.png" alt="Projet Rémi">
+  <!-- ===== En-tête : photo pleine largeur, titre sur l'image ===== -->
+  <section class="projet-hero">
+    <img src="../assets/remi/hero.png" alt="Projet Rémi">
+    <div class="conteneur">
       <h1 class="projet-titre">Supporter les proches aidants</h1>
+    </div>
+  </section>
+
+  <main class="conteneur">
 
       <div class="meta-grille">
         <div>
@@ -63,7 +66,12 @@
           <p>Projet réalisé dans le cadre d'un cours à la maîtrise en design d'interaction de l'Université Laval.</p>
         </div>
       </div>
-    </section>
+
+      <!-- Sommaire collant à gauche (rempli automatiquement par js/main.js)
+           + contenu du projet à droite -->
+      <div class="corps-projet">
+        <nav class="sommaire" aria-label="Sections de la page"></nav>
+        <div class="contenu-projet">
 
     <!-- ===== Vidéo de présentation ===== -->
     <section class="bloc reveler">
@@ -85,7 +93,7 @@
     <!-- ===== Méthodes de recherche ===== -->
     <section class="bloc reveler">
       <h2>Méthode de recherche</h2>
-      <div class="grille-cartes">
+      <div class="grille-cartes trois-colonnes">
         <div class="mini-carte">
           <h3>Observation participante</h3>
           <p>Réalisée à trois reprises afin de mieux comprendre les perceptions, les émotions et les comportements des proches aidants face aux contraintes de la maladie.</p>
@@ -113,12 +121,12 @@
       </div>
     </section>
 
-    <!-- ===== Photos de recherche ===== -->
+    <!-- ===== Photos de recherche (mosaïque sans espaces vides) ===== -->
     <section class="bloc reveler">
-      <div class="grille-images">
-        <img src="../assets/remi/recherche-1.jpg" alt="Recherche terrain — 1">
-        <img src="../assets/remi/recherche-2.png" alt="Recherche terrain — 2">
-        <img src="../assets/remi/recherche-3.png" alt="Recherche terrain — 3">
+      <div class="mosaique">
+        <img src="../assets/remi/recherche-3.png" alt="Recherche terrain — 1">
+        <img src="../assets/remi/recherche-1.jpg" alt="Recherche terrain — 2">
+        <img src="../assets/remi/recherche-2.png" alt="Recherche terrain — 3">
         <img src="../assets/remi/recherche-4.jpg" alt="Recherche terrain — 4">
         <img src="../assets/remi/recherche-5.jpg" alt="Recherche terrain — 5">
       </div>
@@ -127,7 +135,7 @@
     <!-- ===== Constats ===== -->
     <section class="bloc reveler">
       <h2>Constats</h2>
-      <div class="grille-cartes">
+      <div class="grille-cartes trois-colonnes">
         <div class="mini-carte">
           <div class="numero">1</div>
           <p>Le rôle de proche aidant s'installe progressivement, souvent sans anticipation de l'implication à venir.</p>
@@ -168,10 +176,11 @@
       <p>Rémi peut également être sollicité à un moment précis de la journée, que ce soit pour répondre à une question importante ou pour accompagner un moment difficile. Il est entièrement contrôlé par le proche aidant, qui choisit quand l'activer selon son confort, grâce à des contrôles complets sur la lampe et dans l'application.</p>
 
       <!-- Vidéos d'animation : lecture automatique à l'apparition dans
-           l'écran, sans contrôles (gérées par js/main.js) -->
-      <div class="grille-images" style="margin-top:1.5rem;">
+           l'écran, sans contrôles (gérées par js/main.js).
+           Empilées pleine largeur, l'une au-dessus de l'autre. -->
+      <div class="videos-empilees" style="margin-top:1.5rem;">
         <video class="video-defilement" muted playsinline preload="auto" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-1.mp4"></video>
-        <video class="video-defilement" muted playsinline preload="auto" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-2.mp4"></video>
+        <video class="video-defilement" data-son="oui" muted playsinline preload="auto" poster="../assets/remi/poster-video.png" src="../assets/remi/demo-2.mp4"></video>
       </div>
 
       <img src="../assets/remi/interface.png" alt="Interface de Rémi" style="margin-top:1.25rem;">
@@ -181,6 +190,9 @@
       </div>
     </section>
 
+        </div>
+      </div>
+
   </main>
 
   <!-- ===== Autres projets ===== -->
@@ -188,8 +200,8 @@
     <div class="conteneur">
       <h3 class="titre-section">Voir un autre projet</h3>
       <div class="liens">
-        <a href="radio-canada.html">Radio-Canada</a>
-        <a href="safeway.html">Safeway</a>
+        <a class="projet-precedent" href="radio-canada.html"><span class="fleche">←</span>Radio-Canada</a>
+        <a class="projet-suivant" href="safeway.html">Safeway<span class="fleche">→</span></a>
       </div>
     </div>
   </section>
@@ -201,6 +213,14 @@
         <h5>Pour me contacter</h5>
         <a href="mailto:jerome.dorion.pro@gmail.com">jerome.dorion.pro@gmail.com</a>
       </div>
+  
       <div>
         <h5>Tous droits réservés</h5>
-        <p>© <spa
+        <p>© <span data-annee></span> Jérôme Dorion</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

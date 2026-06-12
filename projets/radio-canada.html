@@ -34,12 +34,15 @@
     <a class="langue" href="#" title="English version — à venir">EN</a>
   </aside>
 
-  <main class="conteneur">
-
-    <!-- ===== En-tête du projet ===== -->
-    <section class="projet-hero">
-      <img src="../assets/radio-canada/hero.jpg" alt="Projet Radio-Canada">
+  <!-- ===== En-tête : photo pleine largeur, titre sur l'image ===== -->
+  <section class="projet-hero">
+    <img src="../assets/radio-canada/hero.jpg" alt="Projet Radio-Canada">
+    <div class="conteneur">
       <h1 class="projet-titre">Se rapprocher d'une clientèle plus jeune</h1>
+    </div>
+  </section>
+
+  <main class="conteneur">
 
       <div class="meta-grille">
         <div>
@@ -63,7 +66,12 @@
           <p>Projet réalisé en tant que consultant pour Radio-Canada dans le cadre d'un cours à la maîtrise en design d'interaction de l'Université Laval.</p>
         </div>
       </div>
-    </section>
+
+      <!-- Sommaire collant à gauche (rempli automatiquement par js/main.js)
+           + contenu du projet à droite -->
+      <div class="corps-projet">
+        <nav class="sommaire" aria-label="Sections de la page"></nav>
+        <div class="contenu-projet">
 
     <!-- ===== Mise en contexte ===== -->
     <section class="bloc reveler">
@@ -142,7 +150,7 @@
 
       <h3 style="margin-top:2rem;">Moments d'usage</h3>
       <p>Les moments de mobilité et d'attente représentent des opportunités pour l'accès à l'information, puisque plusieurs jeunes adultes profitent de ces moments pour s'informer ou se divertir.</p>
-      <div class="grille-cartes" style="margin-top:1.25rem;">
+      <div class="grille-cartes trois-colonnes" style="margin-top:1.25rem;">
         <div class="stat">
           <div class="chiffre">74 %</div>
           <p>des répondant·e·s mentionnent avoir l'habitude de faire autre chose en même temps de consulter l'actualité.</p>
@@ -155,7 +163,7 @@
 
       <h3 style="margin-top:2rem;">Habitudes</h3>
       <p>Les habitudes de consommation numérique des jeunes adultes sont fortement ancrées dans leur utilisation quotidienne des réseaux sociaux et difficiles à modifier, mais une majorité des jeunes adultes interrogés se dit ouverte à l'ajout d'une application d'actualité dédiée.</p>
-      <div class="grille-cartes" style="margin-top:1.25rem;">
+      <div class="grille-cartes trois-colonnes" style="margin-top:1.25rem;">
         <div class="stat">
           <div class="chiffre">60 %</div>
           <p>des répondant·e·s indiquent sauvegarder du contenu pour consulter plus tard sur Instagram ou TikTok, démontrant un intérêt pour les fonctions d'enregistrement.</p>
@@ -164,7 +172,7 @@
 
       <h3 style="margin-top:2rem;">Effort perçu de la connexion</h3>
       <p>La création de compte est perçue comme un frein important pour la majorité des jeunes adultes, ce qui peut nuire à l'acquisition de nouveaux utilisateurs.</p>
-      <div class="grille-cartes" style="margin-top:1.25rem;">
+      <div class="grille-cartes trois-colonnes" style="margin-top:1.25rem;">
         <div class="stat">
           <div class="chiffre">75 %</div>
           <p>des répondant·e·s considèrent que la création d'un compte constitue un frein majeur de la bascule des réseaux sociaux vers une application.</p>
@@ -173,7 +181,7 @@
 
       <h3 style="margin-top:2rem;">Formats</h3>
       <p>Les formats courts, particulièrement vidéo et audio, sont les plus appréciés, notamment en situation de multitâche ou de déplacement, et les carrousels concis et explicatifs suscitent également un intérêt marqué.</p>
-      <div class="grille-cartes" style="margin-top:1.25rem;">
+      <div class="grille-cartes trois-colonnes" style="margin-top:1.25rem;">
         <div class="stat">
           <div class="chiffre">40 %</div>
           <p>des répondant·e·s préfèrent les résumés écrits et visuels pour consulter du contenu d'actualité.</p>
@@ -190,7 +198,7 @@
 
       <h3 style="margin-top:2rem;">Repères visuels</h3>
       <p>Certains indicateurs visuels et fonctionnalités renforcent la consommation rapide de l'information et soutiennent les habitudes des jeunes adultes, qui apprécient avoir un sentiment de contrôle sur les contenus proposés.</p>
-      <div class="grille-cartes" style="margin-top:1.25rem;">
+      <div class="grille-cartes trois-colonnes" style="margin-top:1.25rem;">
         <div class="stat">
           <div class="chiffre">86 %</div>
           <p>des répondant·e·s considèrent que le sujet ou le thème du contenu sont des critères de filtrage importants.</p>
@@ -198,22 +206,127 @@
       </div>
     </section>
 
-    <!-- ===== Personas ===== -->
+    <!-- ===== Personas (cartes codées, illustrations extraites des SVG) ===== -->
     <section class="bloc reveler">
       <h2>Personas</h2>
-      <img src="../assets/radio-canada/persona-1-navigateur.svg" alt="Persona 1">
-      <img src="../assets/radio-canada/persona-2-investi.svg" alt="Persona 2">
-      <img src="../assets/radio-canada/persona-3-multitache.svg" alt="Persona 3">
-      <img src="../assets/radio-canada/persona-4-selectif.svg" alt="Persona 4">
-      <img src="../assets/radio-canada/persona-5-abonnee.svg" alt="Persona 5">
+
+      <div class="personas">
+
+      <article class="persona">
+        <img src="../assets/radio-canada/illustration-1-navigateur.png" alt="Illustration du persona Le navigateur">
+        <div>
+          <h3>Le navigateur</h3>
+          <p class="trait">Passif, s'informe en scrollant et actif sur les médias sociaux</p>
+          <p>Jeune adulte qui découvre l'actualité en scrollant sur TikTok, Instagram ou Facebook sans la chercher. Consomme des formats très courts et visuels, surtout entre deux moments de divertissement, par exemple dans les files d'attente, les transports ou avant de dormir.</p>
+        </div>
+      </article>
+
+      <article class="persona">
+        <img src="../assets/radio-canada/illustration-2-investi.png" alt="Illustration du persona L'investi">
+        <div>
+          <h3>L'investi</h3>
+          <p class="trait">Engagé et très intéressé à l'actualité</p>
+          <p>Jeune adulte qui consulte une ou plusieurs sources crédibles par jour ou à différents moments de la journée, auxquelles s'ajoute quelques plateformes sociales. Privilégie des formats courts et mobiles, avec la possibilité d'approfondir selon ses besoins.</p>
+        </div>
+      </article>
+
+      <article class="persona">
+        <img src="../assets/radio-canada/illustration-3-multitache.png" alt="Illustration du persona Le multitâche">
+        <div>
+          <h3>Le multitâche</h3>
+          <p class="trait">Productif, veut rentabiliser son temps et optimiser ses déplacements</p>
+          <p>Jeune adulte qui s'informe en mouvement grâce aux balados, résumés ou capsules YouTube. Privilégie les contenus courts et audio qu'il peut consommer en parallèle d'autres tâches du quotidien, comme par exemple en se préparant, en cuisinant ou en faisant du ménage.</p>
+        </div>
+      </article>
+
+      <article class="persona">
+        <img src="../assets/radio-canada/illustration-4-selectif.png" alt="Illustration du persona Le sélectif">
+        <div>
+          <h3>Le sélectif</h3>
+          <p class="trait">Engagé dans les sujets d'intérêts personnels</p>
+          <p>Jeune adulte qui consulte du contenu par affinités thématiques (ex. : pop culture, musique, sports). S'intéresse peu à l'actualité traditionnelle et reçoit les nouvelles par son entourage ou lorsqu'elles deviennent virales. Il privilégie les contenus simples et rapides.</p>
+        </div>
+      </article>
+
+      <article class="persona">
+        <img src="../assets/radio-canada/illustration-5-abonnee.png" alt="Illustration du persona L'abonné">
+        <div>
+          <h3>L'abonné</h3>
+          <p class="trait">Fidèle aux info influenceurs et aux médias sociaux</p>
+          <p>Jeune adulte qui s'informe surtout via les info influenceurs suivis sur Instagram, TikTok ou YouTube. Recherche l'actualité et préfère les vidéos explicatives et résumés de plateformes variées aux médias traditionnels pour suivre l'actualité locale et internationale.</p>
+        </div>
+      </article>
+
+      </div>
     </section>
 
     <!-- ===== Parcours utilisateurs ===== -->
     <section class="bloc reveler">
       <h2>Parcours utilisateurs</h2>
-      <img src="../assets/radio-canada/parcours-1.svg" alt="Parcours utilisateur 1">
-      <img src="../assets/radio-canada/parcours-2.svg" alt="Parcours utilisateur 2">
-      <img src="../assets/radio-canada/parcours-3.svg" alt="Parcours utilisateur 3">
+
+      <!-- Parcours 1 : texte codé à gauche, schéma (PNG sans texte) à droite -->
+      <div class="parcours">
+        <div class="parcours-texte">
+          <p class="surtitre">Parcours 1</p>
+          <h3>Installer l'application</h3>
+          <p>Parcours d'un utilisateur exposé à du contenu Radio-Canada sur Instagram, de la découverte initiale jusqu'à l'accès à l'application Radio-Canada Info.</p>
+
+          <div class="parcours-constats">
+            <h4>Constats et frictions identifiés</h4>
+            <ol>
+              <li>Les stories servent uniquement à rediriger vers la publication, sans autre option de bascule.</li>
+              <li>Aucune option de bascule n'est mise de l'avant.</li>
+              <li>La seule redirection disponible se trouve à la fin du carrousel.</li>
+              <li>Aucun lien externe vers l'App Store n'est présent.</li>
+              <li>L'utilisateur doit rechercher l'application par lui-même, sans raccourci disponible.</li>
+            </ol>
+          </div>
+        </div>
+        <img src="../assets/radio-canada/parcours-1.png" alt="Schéma du parcours 1 — de la story Instagram jusqu'à l'installation de l'application">
+      </div>
+      <!-- Parcours 2 -->
+      <div class="parcours parcours-large">
+        <div class="parcours-texte">
+          <p class="surtitre">Parcours 2</p>
+          <h3>Entrer sur l'application</h3>
+          <p>Parcours de l'utilisateur, de l'ouverture de l'application Radio-Canada Info à la découverte et à la navigation générale.</p>
+
+          <div class="parcours-constats">
+            <h4>Frictions identifiées</h4>
+            <ol>
+              <li>Inscription perçue comme une friction d'entrée à contourner</li>
+              <li>Création de compte jugée longue</li>
+              <li>Défilement horizontal des catégories peu visible et non remarqué</li>
+              <li>Deux entrées distinctes pour les réglages</li>
+              <li>Modifications apportées difficiles à comprendre immédiatement</li>
+            </ol>
+          </div>
+        </div>
+        <img src="../assets/radio-canada/parcours-2.png" alt="Schéma du parcours 2 — de l'ouverture de l'application à la navigation générale">
+      </div>
+
+      <!-- Parcours 3 -->
+      <div class="parcours parcours-large">
+        <div class="parcours-texte">
+          <p class="surtitre">Parcours 3</p>
+          <h3>Naviguer vers un contenu recherché</h3>
+          <p>Parcours ciblé de navigation vers du contenu recherché, adapté à différents profils utilisateurs, qui peuvent partager des besoins communs et se recouper.</p>
+
+          <div class="parcours-constats">
+            <h4>Frictions identifiées</h4>
+            <ol>
+              <li>Options de résumé et de vulgarisation limitées pour une compréhension rapide</li>
+              <li>Contenus enregistrés difficiles à retrouver et indisponibles pour En bref et les vidéos</li>
+              <li>Absence de recherche spécifique par format</li>
+              <li>Offre audio peu engageante, limitée à l'écoute d'articles longs à des fins d'accessibilité</li>
+              <li>Exploration via la recherche peu efficace pour certains sujets</li>
+              <li>Absence de résumé rapidement accessible pour une vue d'ensemble de l'actualité</li>
+              <li>Sujet peu mis en évidence dans la hiérarchie de À la Une, préférence pour la présentation de Mon fil</li>
+            </ol>
+          </div>
+        </div>
+        <img src="../assets/radio-canada/parcours-3.png" alt="Schéma du parcours 3 — navigation vers un contenu recherché selon les profils">
+      </div>
     </section>
 
     <!-- ===== Opportunités de design ===== -->
@@ -242,7 +355,26 @@
 
       <h3 style="margin-top:2.5rem;">Utilisation des fonctionnalités natives des applications</h3>
       <p>L'utilisation des fonctionnalités natives des réseaux sociaux est pertinente dans une situation comme celle de Radio-Canada, car elle permet de renvoyer rapidement l'utilisateur vers la plateforme officielle en réduisant au maximum l'effort demandé et donc de créer un meilleur taux de conversion.</p>
-      <img src="../assets/radio-canada/fonctionnalites-natives.png" alt="Fonctionnalités natives des applications">
+
+      <!-- Avant / Après : maquettes alignées à droite,
+           annotation reliée par une ligne à l'encadré blanc -->
+      <div class="comparaison">
+        <figure>
+          <figcaption>Avant</figcaption>
+          <img src="../assets/radio-canada/natives-avant.png" alt="Story Instagram de Radio-Canada, version actuelle">
+        </figure>
+        <figure>
+          <figcaption>Après</figcaption>
+          <img src="../assets/radio-canada/natives-apres.png" alt="Story Instagram avec lien direct pour télécharger l'application">
+        </figure>
+        <div class="annotation">
+          <span class="ligne" aria-hidden="true"></span>
+          <div class="texte">
+            <h4>Accès rapide</h4>
+            <p>Un lien externe direct permet de télécharger l'application en un instant, sans friction, dans le but de réduire l'effort perçu.</p>
+          </div>
+        </div>
+      </div>
 
       <h3 style="margin-top:2.5rem;">Uniformisation des linktrees</h3>
       <p>L'uniformisation des Linktree semblait essentielle. Elle a pour but d'offrir les mêmes attentes à l'utilisateur, peu importe le compte Radio-Canada qu'il consulte, tout en s'assurant que les redirections vers les plateformes externes de l'organisation sont présentes et mises en valeur.</p>
@@ -270,6 +402,9 @@
       <img src="../assets/radio-canada/navigation.png" alt="Ajustement des barres de navigation" style="margin-top:1.25rem;">
     </section>
 
+        </div>
+      </div>
+
   </main>
 
   <!-- ===== Autres projets ===== -->
@@ -277,8 +412,8 @@
     <div class="conteneur">
       <h3 class="titre-section">Voir un autre projet</h3>
       <div class="liens">
-        <a href="safeway.html">Safeway</a>
-        <a href="remi.html">Rémi</a>
+        <a class="projet-precedent" href="safeway.html"><span class="fleche">←</span>Safeway</a>
+        <a class="projet-suivant" href="remi.html">Rémi<span class="fleche">→</span></a>
       </div>
     </div>
   </section>
@@ -292,4 +427,11 @@
       </div>
       <div>
         <h5>Tous droits réservés</h5>
-        <p>© <spa
+        <p>© <span data-annee></span> Jérôme Dorion</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
