@@ -353,12 +353,10 @@
       <h2>Recommandations</h2>
       <p>Plusieurs recommandations ont été formulées pour répondre au mandat initial de Radio-Canada. Elles se structurent en trois catégories. Premièrement, il est question d'améliorer la redirection depuis les réseaux sociaux vers l'application. Deuxièmement, de réduire les frictions lors de la création de compte. Finalement, des pistes de solutions pour l'ajout de repères et de fonctionnalités adaptés aux habitudes des jeunes adultes.</p>
 
-      <h3 style="margin-top:2.5rem;">Utilisation des fonctionnalités natives des applications</h3>
+      <h3 class="titre-reco">Utilisation des fonctionnalités natives des applications</h3>
       <p>L'utilisation des fonctionnalités natives des réseaux sociaux est pertinente dans une situation comme celle de Radio-Canada, car elle permet de renvoyer rapidement l'utilisateur vers la plateforme officielle en réduisant au maximum l'effort demandé et donc de créer un meilleur taux de conversion.</p>
 
-      <!-- Avant / Après : maquettes alignées à droite,
-           annotation reliée par une ligne à l'encadré blanc -->
-      <div class="comparaison">
+      <div class="comparaison-annotee trois-col">
         <figure>
           <figcaption>Avant</figcaption>
           <img src="../assets/radio-canada/natives-avant.png" alt="Story Instagram de Radio-Canada, version actuelle">
@@ -367,33 +365,170 @@
           <figcaption>Après</figcaption>
           <img src="../assets/radio-canada/natives-apres.png" alt="Story Instagram avec lien direct pour télécharger l'application">
         </figure>
-        <div class="annotation">
-          <span class="ligne" aria-hidden="true"></span>
-          <div class="texte">
-            <h4>Accès rapide</h4>
-            <p>Un lien externe direct permet de télécharger l'application en un instant, sans friction, dans le but de réduire l'effort perçu.</p>
+        <div class="col-annotations">
+          <div class="annotation-point" style="--marge: calc(135% + 20px);">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Accès rapide</h4>
+              <p>Un lien externe direct permet de télécharger l'application en un instant, sans friction, dans le but de réduire l'effort perçu.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <h3 style="margin-top:2.5rem;">Uniformisation des linktrees</h3>
+      <h3 class="titre-reco">Uniformisation des linktrees</h3>
       <p>L'uniformisation des Linktree semblait essentielle. Elle a pour but d'offrir les mêmes attentes à l'utilisateur, peu importe le compte Radio-Canada qu'il consulte, tout en s'assurant que les redirections vers les plateformes externes de l'organisation sont présentes et mises en valeur.</p>
-      <img src="../assets/radio-canada/linktree-1.png" alt="Uniformisation des linktrees — 1">
-      <img src="../assets/radio-canada/linktree-2.png" alt="Uniformisation des linktrees — 2">
+      <!-- Les 4 linktrees actuels, côte à côte -->
+      <figure class="linktree-exemples">
+        <figcaption>Exemple de linktree actuel</figcaption>
+        <div class="grille-telephones">
+          <img src="../assets/radio-canada/linktree-exemple-1.png" alt="Linktree actuel de rc.science">
+          <img src="../assets/radio-canada/linktree-exemple-2.png" alt="Linktree actuel de RC OHdio">
+          <img src="../assets/radio-canada/linktree-exemple-3.png" alt="Profil Instagram sans linktree uniformisé">
+          <img src="../assets/radio-canada/linktree-exemple-4.png" alt="Linktree actuel de Radio-Canada">
+        </div>
+      </figure>
 
-      <h3 style="margin-top:2.5rem;">Connexion rapide</h3>
+      <!-- Le template proposé, annoté en vrai texte responsive -->
+      <div class="schema-annote">
+        <img class="schema-image" src="../assets/radio-canada/linktree-template.png" alt="Template de linktree uniformisé proposé">
+        <div class="schema-annotations">
+          <!-- chaque annotation : un bracket qui embrasse sa zone sur le
+               téléphone (--debut à --fin), une flèche alignée au titre -->
+          <div class="annotation-flottante" style="--debut: 15%; --fin: 37%;">
+            <span class="bracket" aria-hidden="true"></span>
+            <div class="texte">
+              <h4><span class="ligne" aria-hidden="true"></span>En-tête</h4>
+              <ul>
+                <li>Image du compte (logo)</li>
+                <li>Nom du compte</li>
+                <li>Description du compte</li>
+                <li>Liens externes vers les réseaux sociaux spécifiques au compte</li>
+              </ul>
+            </div>
+          </div>
+          <div class="annotation-flottante" style="--debut: 39%; --fin: 62%;">
+            <span class="bracket" aria-hidden="true"></span>
+            <div class="texte">
+              <h4><span class="ligne" aria-hidden="true"></span>Section 1</h4>
+              <p>La première section centralise les accès principaux, soit l'application ou les applications associées au compte, la redirection vers le site web et le lien d'abonnement à l'infolettre.</p>
+            </div>
+          </div>
+          <div class="annotation-flottante" style="--debut: 65%; --fin: 88%;">
+            <span class="bracket" aria-hidden="true"></span>
+            <div class="texte">
+              <h4><span class="ligne" aria-hidden="true"></span>Section 2</h4>
+              <p>La deuxième section centralise les redirections vers une sélection d'articles spécifiques au compte.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="titre-reco">Connexion rapide</h3>
       <p>La connexion a été observée comme un frein clair pour les nouveaux utilisateurs. Rendre cette étape moins lourde et plus rapide représente un potentiel énorme pour améliorer le taux de conversion.</p>
-      <img src="../assets/radio-canada/connexion-rapide.png" alt="Connexion rapide">
+      <div class="comparaison-annotee trois-col">
+        <figure>
+          <figcaption>Avant</figcaption>
+          <img src="../assets/radio-canada/connexion-avant.png" alt="Création de compte actuelle, avec courriel et mot de passe">
+        </figure>
+        <figure>
+          <figcaption>Après</figcaption>
+          <img src="../assets/radio-canada/connexion-apres.png" alt="Création de compte avec connexion Google, Facebook ou Apple">
+        </figure>
+        <div class="col-annotations">
+          <div class="annotation-point" style="--marge: calc(101% + 20px);">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Connexion rapide</h4>
+              <p>La création de compte est simplifiée grâce à la connexion via Google, Facebook ou Apple, une approche aujourd'hui incontournable pour réduire toute friction et encourager l'adoption de l'application.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h3 style="margin-top:2.5rem;">Ajout d'indicateurs</h3>
+      <h3 class="titre-reco">Ajout d'indicateurs</h3>
       <p>Les jeunes adultes sont conscients du temps limité qu'ils vont passer sur une application d'actualité. Certains indicateurs proposés peuvent permettre à l'utilisateur de s'ajuster selon le temps qu'il est prêt à investir dans la lecture d'articles, selon le niveau de profondeur qu'il souhaite atteindre et ses préférences de consultation.</p>
-      <img src="../assets/radio-canada/indicateurs.png" alt="Ajout d'indicateurs">
+      <!-- Plus d'annotations que de place : des pastilles numérotées
+           ancrées sur la maquette renvoient aux textes en dessous -->
+      <!-- Textes annotés directement autour de la maquette Après.
+           Les flèches droites visent leur cible ; celle de « Résumé
+           enrichi » fait un coude pour laisser la place au texte. -->
+      <div class="comparaison-annotee quatre-col">
+        <figure>
+          <figcaption>Avant</figcaption>
+          <img src="../assets/radio-canada/indicateurs-avant.png" alt="Fil d'actualité actuel, sans indicateurs">
+        </figure>
+        <!-- annotations à gauche de la maquette Après -->
+        <div class="col-annotations">
+          <div class="annotation-point miroir" style="--marge: calc(75% + 20px); --ar: 0.31;">
+            <span class="coude" aria-hidden="true"><span class="pied"></span></span>
+            <div class="texte">
+              <h4>Résumé enrichi</h4>
+              <p>Un résumé plus complet est accessible directement depuis la carte, permettant à l'utilisateur de saisir l'essentiel d'un article sans avoir à l'ouvrir.</p>
+            </div>
+          </div>
+          <div class="annotation-point miroir" style="--marge: max(1.5rem, calc(76% - 10em));">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Temps de lecture</h4>
+              <p>Un indicateur affiche la durée estimée de lecture de chaque article, permettant à l'utilisateur de mieux planifier sa consommation d'information.</p>
+            </div>
+          </div>
+        </div>
+        <figure>
+          <figcaption>Après</figcaption>
+          <img src="../assets/radio-canada/indicateurs-apres.png" alt="Fil d'actualité avec résumé enrichi, temps de lecture, indicateur de lecture et audio intégré">
+        </figure>
+        <!-- annotations à droite de la maquette Après -->
+        <div class="col-annotations">
+          <div class="annotation-point" style="--marge: calc(33% + 40px);">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Indicateur de lecture</h4>
+              <p>Un marqueur visuel indique si un article a déjà été lu, permettant à l'utilisateur de s'y retrouver facilement dans son fil d'actualité.</p>
+            </div>
+          </div>
+          <div class="annotation-point" style="--marge: max(1.5rem, calc(110% - 10em));">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Audio intégré</h4>
+              <p>L'utilisateur peut activer la lecture audio d'un article directement depuis la carte, sans avoir à l'ouvrir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h3 style="margin-top:2.5rem;">Mode audio augmenté</h3>
+
+      <h3 class="titre-reco">Mode audio augmenté</h3>
       <p>Le format audio a été observé comme très populaire chez les jeunes adultes. Il s'adapte bien à leurs habitudes multitâches, que ce soit lors de leurs déplacements, en cuisinant ou pendant des tâches ménagères. Un mode audio plus développé et complet peut représenter une bonne porte d'entrée pour rejoindre une nouvelle clientèle qui n'est pas encore présente sur l'application.</p>
-      <img src="../assets/radio-canada/mode-audio.png" alt="Mode audio augmenté">
+      <div class="comparaison-annotee trois-col">
+        <figure>
+          <figcaption>Avant</figcaption>
+          <img src="../assets/radio-canada/audio-avant.png" alt="Lecture audio actuelle, limitée à la lecture d'articles">
+        </figure>
+        <figure>
+          <figcaption>Après</figcaption>
+          <img src="../assets/radio-canada/audio-apres.png" alt="Mode audio augmenté avec contrôles avancés et liste d'écoute">
+        </figure>
+        <div class="col-annotations">
+          <div class="annotation-point" style="--marge: calc(84% + 33px);">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Contrôle avancé</h4>
+              <p>Des contrôles avancés offrent une expérience d'écoute plus complète et familière.</p>
+            </div>
+          </div>
+          <div class="annotation-point" style="--marge: max(1.5rem, calc(35% - 9em));">
+            <span class="ligne" aria-hidden="true"></span>
+            <div class="texte">
+              <h4>Liste d'écoute personnalisée</h4>
+              <p>Un générateur crée automatiquement des listes d'écoute adaptées aux habitudes et préférences de l'utilisateur, pour une expérience rapide et sur mesure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h3 style="margin-top:2.5rem;">Ajustement des barres de navigation</h3>
+      <h3 class="titre-reco">Ajustement des barres de navigation</h3>
       <p>Deux enjeux sont ressortis de nos recherches utilisateurs.</p>
       <ul>
         <li>Premièrement, le menu du haut, présentement défilant horizontalement, n'était pas automatiquement compris par les nouveaux utilisateurs. Ces derniers trouvaient le défilement long et la fonction pour réarranger les sections peu intuitive.</li>

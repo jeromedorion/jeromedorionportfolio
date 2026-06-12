@@ -51,6 +51,79 @@ if (annee) {
 }
 
 // ==========================================================
+// Décompte animé des statistiques (.stat .chiffre)
+// Le chiffre part de 0 et monte rapidement jusqu'à sa valeur
+// réelle quand la carte entre dans l'écran, avec une
+// décélération en fin de course. Joue une seule fois.
+// ==========================================================
+const chiffres = document.querySelectorAll(".stat .chiffre");
+const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (chiffres.length > 0 && "IntersectionObserver" in window && !mouvementReduit) {
+  const animerChiffre = (el) => {
+    const m = el.textContent.trim().match(/^(\d+)([\s\S]*)$/);
+    if (!m) return; // pas un chiffre : on ne touche à rien
+    const cible = parseInt(m[1], 10);
+    const suffixe = m[2]; // ex. : " %"
+    const duree = 1700;   // millisecondes
+    const debut = performance.now();
+
+    const etape = (maintenant) => {
+      const progres = Math.min((maintenant - debut) / duree, 1);
+      // décélération marquée : le décompte ralentit tôt et
+      // approche doucement du nombre final
+      const decelere = 1 - Math.pow(1 - progres, 5);
+      el.textContent = Math.round(cible * decelere) + suffixe;
+      if (progres < 1) requestAnimationFrame(etape);
+    };
+    requestAnimationFrame(etape);
+  };
+
+  const observateurChiffres = new IntersectionObserver(
+    (entrees) => {
+      entrees.forEach((entree) => {
+        if (entree.isIntersecting) {
+          animerChiffre(entree.target);
+          observateurChiffres.unobserve(entree.target); // une seule fois
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  chiffres.forEach((c) => observateurChiffres.observe(c));
+}
+
+// ==========================================================
+// Points et légende reliés, dans les deux sens :
+// - survol d'un point -> sa description est mise en évidence
+// - survol d'une description -> son point grossit
+// ==========================================================
+document.querySelectorAll(".point-survol").forEach((point) => {
+  const cible = document.getElementById(point.dataset.cible);
+  if (!cible) return;
+  const legende = cible.closest(".legende-annotations");
+
+  // point -> description
+  const activer = () => {
+    legende.classList.add("survol-actif");
+    cible.classList.add("surligne");
+  };
+  const desactiver = () => {
+    legende.classList.remove("survol-actif");
+    cible.classList.remove("surligne");
+  };
+  point.addEventListener("mouseenter", activer);
+  point.addEventListener("mouseleave", desactiver);
+  point.addEventListener("focus", activer); // accessible au clavier
+  point.addEventListener("blur", desactiver);
+
+  // description -> point
+  cible.addEventListener("mouseenter", () => point.classList.add("surligne"));
+  cible.addEventListener("mouseleave", () => point.classList.remove("surligne"));
+});
+
+// ==========================================================
 // Sommaire collant (.sommaire) des pages projets
 // Construit automatiquement à partir des titres <h2> des
 // sections, et surligne la section visible au défilement.

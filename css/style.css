@@ -26,7 +26,7 @@
   --police-texte: "Manrope", sans-serif;
   --police-accent: "IBM Plex Mono", monospace;
 
-  --largeur-max: 1360px; /* contenu plus large, marges réduites */
+  --largeur-max: 1480px; /* contenu plus large, marges réduites */
   --rayon: 0; /* coins carrés partout, style droit et neutre */
 }
 
@@ -71,9 +71,18 @@ a {
 /* ----- 2. Typographie ----- */
 h1, h2, h3 {
   font-family: var(--police-titre);
+  line-height: 1.1;
+}
+
+h1, h2 {
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  line-height: 1.1;
+}
+
+/* Sous-titres (h3) : casse normale et crénage légèrement ouvert
+   pour une meilleure lisibilité */
+h3 {
+  letter-spacing: 0.01em;
 }
 
 .titre-section {
@@ -82,6 +91,9 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   gap: 1rem;
+  /* reste en majuscules même en h3 (ex. : « Voir un autre projet ») */
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
 .titre-section::after {
@@ -500,9 +512,17 @@ main {
 }
 
 /* Le contenu des sections s'aligne avec le titre (après le numéro) :
-   2.4rem de numéro + 1.5rem d'espacement = 3.9rem */
-.bloc > *:not(h2) {
-  margin-left: 3.9rem;
+   2.4rem de numéro + 1.5rem d'espacement = 3.9rem.
+   Le retrait est porté par la section elle-même (padding), donc
+   images et grilles partagent exactement les mêmes limites gauche
+   et droite, à toutes les tailles d'écran. Seul le titre ressort
+   à gauche pour que son numéro reste dans la marge. */
+.bloc {
+  padding-left: 3.9rem;
+}
+
+.bloc > h2 {
+  margin-left: -3.9rem;
 }
 
 .bloc h3 {
@@ -551,6 +571,8 @@ main {
   border: 1px solid var(--ligne);
   border-radius: var(--rayon);
   padding: 1.5rem;
+  /* ombre très discrète, juste assez pour décoller du fond */
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.04), 0 4px 14px rgba(17, 17, 17, 0.05);
 }
 
 .mini-carte .numero {
@@ -568,6 +590,8 @@ main {
   border: 1px solid var(--ligne);
   border-radius: var(--rayon);
   padding: 1.5rem;
+  /* même ombre discrète que les mini-cartes */
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.04), 0 4px 14px rgba(17, 17, 17, 0.05);
 }
 
 .stat .chiffre {
@@ -607,7 +631,8 @@ main {
 /* …mais pas dans les grilles d'images, où l'espacement
    est déjà géré par la grille (sinon la 2e image se décale) */
 .grille-images img + img,
-.mosaique img + img {
+.mosaique img + img,
+.grille-telephones img + img {
   margin-top: 0;
 }
 
@@ -868,6 +893,519 @@ main {
 
   .parcours-constats {
     margin-top: 1.5rem;
+  }
+}
+
+/* Sous-sections de recommandations : espacement identique
+   entre chacune, peu importe le contenu qui précède */
+.titre-reco {
+  margin-top: 5.5rem;
+}
+
+/* ----- Comparaisons annotées (Connexion, Indicateurs, Mode audio) -----
+   Maquettes en colonnes + annotations ancrées en hauteur (--pos, en %
+   de la hauteur des téléphones). La ligne touche la maquette d'un côté
+   et pointe le texte de l'autre ; elle raccourcit avec l'écran. */
+.comparaison-annotee {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+.trois-col {
+  grid-template-columns: 1fr 1fr 1.25fr;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Variante avec textes annotés des deux côtés de la maquette Après */
+.quatre-col {
+  grid-template-columns: 1fr 1.05fr 1fr 1.2fr;
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Flèche en coude : part du titre, descend le long de la maquette
+   et pointe sa cible plus bas. Sa hauteur suit les proportions de
+   la maquette grâce à aspect-ratio (--ar = largeur / descente). */
+.annotation-point .coude {
+  position: relative;
+  flex: 0 0 22%; /* segment horizontal plus court */
+  aspect-ratio: var(--ar, 1);
+  margin-top: 0.8em;
+  border-top: 1px solid var(--encre);
+}
+
+.annotation-point.miroir .coude {
+  border-right: 1px solid var(--encre);
+  /* la descente reste décollée du téléphone, dans l'espacement,
+     pour qu'on voie bien qu'elle longe la maquette */
+  margin-right: -0.75rem;
+}
+
+/* Flèches droites plus courtes du côté gauche */
+.quatre-col .miroir .ligne {
+  flex-basis: clamp(1.2rem, 2vw, 2rem);
+}
+
+/* Bas de la descente : second angle droit, segment horizontal continu
+   qui rejoint le téléphone */
+.annotation-point.miroir .coude::before {
+  content: "";
+  position: absolute;
+  right: -1.25rem;
+  bottom: -1px;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--encre);
+}
+
+/* Le point, collé à la maquette comme ceux des autres annotations */
+.annotation-point.miroir .coude .pied {
+  position: absolute;
+  right: calc(-1.25rem - 3px);
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--encre);
+}
+
+/* Flèche vers le titre, à l'extrémité du segment horizontal */
+.annotation-point.miroir .coude::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--encre);
+  border-right: 1px solid var(--encre);
+  transform: rotate(-135deg);
+}
+
+/* Points d'annotation : un simple rond collé à la maquette,
+   sans ligne ni flèche */
+.annotation-point.numerote {
+  align-items: center;
+}
+
+.annotation-point.numerote .point-survol {
+  margin-left: -1rem; /* rapproché de la maquette (colonne de droite) */
+}
+
+.annotation-point.numerote.miroir .point-survol {
+  margin-left: 0;
+  margin-right: -1rem; /* rapproché de la maquette (colonne de gauche) */
+}
+
+.pastille {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--encre);
+  color: var(--papier);
+  font-family: var(--police-accent);
+  font-size: 0.75rem;
+  display: grid;
+  place-items: center;
+}
+
+/* Point survolable sur la maquette : un simple indicateur rond
+   qui, au survol, met en évidence sa description dans la légende */
+.point-survol {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.point-survol::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--encre);
+  transition: transform 0.2s ease;
+}
+
+.point-survol:hover::before,
+.point-survol:focus-visible::before,
+.point-survol.surligne::before {
+  transform: translate(-50%, -50%) scale(1.7);
+}
+
+/* Pendant un survol, la légende estompe tout sauf l'élément visé */
+.legende-annotations .item {
+  transition: opacity 0.2s ease;
+}
+
+.legende-annotations.survol-actif .item {
+  opacity: 0.25;
+}
+
+.legende-annotations.survol-actif .item.surligne {
+  opacity: 1;
+}
+
+.legende-annotations .item.surligne p {
+  color: var(--encre);
+}
+
+/* Légende sous la comparaison : textes des pastilles */
+.legende-annotations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem 2.5rem;
+  margin: 2.5rem auto 0;
+  max-width: 980px;
+}
+
+.legende-annotations .item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+/* Indique que les items de légende sont survolables */
+.legende-annotations .item {
+  cursor: pointer;
+}
+
+.legende-annotations .item .pastille {
+  margin-top: 0.1em;
+}
+
+.legende-annotations h4 {
+  font-family: var(--police-titre);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.legende-annotations p {
+  font-size: 0.9rem;
+  color: var(--encre-douce);
+}
+
+.comparaison-annotee figure,
+.comparaison-annotee figure + figure {
+  margin: 0;
+}
+
+.comparaison-annotee figcaption {
+  font-family: var(--police-accent);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.comparaison-annotee img {
+  width: 100%;
+}
+
+/* Colonne d'annotations : même hauteur que la rangée,
+   pour que les % d'ancrage suivent la hauteur des téléphones */
+.col-annotations {
+  position: relative;
+  align-self: stretch;
+}
+
+/* Les annotations restent dans le flux normal (pas d'absolu) :
+   elles occupent leur vraie hauteur, donc le contenu suivant ne
+   peut jamais être recouvert. L'ancrage vertical se fait par une
+   marge en % de la largeur de colonne (--marge), qui suit la
+   taille des maquettes à toutes les largeurs d'écran. */
+.annotation-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: var(--marge, 0);
+}
+
+.annotation-point .ligne {
+  position: relative;
+  flex: 0 0 clamp(1.8rem, 4vw, 4rem); /* raccourcit avec l'écran */
+  height: 1px;
+  background: var(--encre);
+  margin-top: 0.8em; /* centrée sur la première ligne du titre */
+  margin-left: -2rem; /* touche la maquette */
+}
+
+/* Point côté maquette */
+.annotation-point .ligne::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--encre);
+}
+
+/* Flèche côté texte */
+.annotation-point .ligne::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--encre);
+  border-right: 1px solid var(--encre);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Version miroir : texte à gauche de la maquette,
+   le point est à droite (sur la maquette) et la flèche à gauche */
+.annotation-point.miroir {
+  flex-direction: row-reverse;
+}
+
+.annotation-point.miroir .ligne {
+  margin-left: 0;
+  margin-right: -2rem;
+}
+
+.annotation-point.miroir .ligne::before {
+  left: auto;
+  right: -3px;
+}
+
+.annotation-point.miroir .ligne::after {
+  right: auto;
+  left: 0;
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.annotation-point .texte {
+  transform: none; /* le titre reste à sa place naturelle,
+                      la ligne vient se centrer sur lui */
+}
+
+.annotation-point h4 {
+  font-family: var(--police-titre);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.annotation-point p {
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  color: var(--encre-douce);
+}
+
+@media (max-width: 920px) {
+  /* Maquettes côte à côte, annotations empilées dessous */
+  .trois-col,
+  .quatre-col {
+    grid-template-columns: 1fr 1fr;
+    max-width: none;
+  }
+
+  /* Les pastilles ancrées disparaissent : la légende suffit */
+  .annotation-point.numerote {
+    display: none;
+  }
+
+  .legende-annotations {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .col-annotations {
+    position: static;
+    align-self: auto;
+    grid-column: 1 / -1;
+  }
+
+  .annotation-point {
+    position: static;
+    margin-top: 1.5rem;
+  }
+
+  .annotation-point .ligne,
+  .annotation-point .coude {
+    display: none;
+  }
+
+  .annotation-point .texte {
+    transform: none;
+  }
+
+  .annotation-point p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ----- Linktrees : exemples actuels + template annoté ----- */
+.linktree-exemples {
+  margin: 2rem 0 0;
+}
+
+.linktree-exemples figcaption {
+  font-family: var(--police-accent);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.grille-telephones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.grille-telephones img {
+  width: 100%;
+}
+
+/* Template annoté : téléphone à gauche, annotations à droite,
+   chacune calée en hauteur (--pos) sur la section qu'elle décrit.
+   Les positions sont en % de la hauteur du téléphone : elles
+   restent alignées à toutes les tailles d'écran. */
+.schema-annote {
+  display: grid;
+  /* le téléphone peut rétrécir jusqu'à 180px, la colonne de texte
+     peut se compresser (minmax(0, 1fr)) sans déborder */
+  grid-template-columns: minmax(180px, 320px) minmax(0, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+  /* bloc centré dans la page */
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.schema-annote .schema-image {
+  width: 100%;
+  align-self: start;
+}
+
+.schema-annotations {
+  position: relative;
+}
+
+/* L'annotation occupe exactement la hauteur de sa zone (--debut à --fin) */
+.annotation-flottante {
+  position: absolute;
+  top: var(--debut);
+  height: calc(var(--fin) - var(--debut));
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center; /* texte centré sur la hauteur du bracket */
+  gap: 2rem;
+}
+
+/* Le bracket : embrasse verticalement la zone décrite,
+   ouvert vers le téléphone */
+.annotation-flottante .bracket {
+  flex: 0 0 10px;
+  align-self: stretch;
+  border: 1px solid var(--encre);
+  border-left: none;
+}
+
+/* La flèche part du bracket et pointe vers le titre */
+.annotation-flottante h4 {
+  font-family: var(--police-titre);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.annotation-flottante h4 {
+  position: relative;
+}
+
+.annotation-flottante h4 .ligne {
+  /* la flèche part exactement du bracket et rejoint le titre :
+     sa largeur = l'espacement (2rem) moins le retrait avant le titre */
+  position: absolute;
+  right: calc(100% + 0.4rem);
+  top: 50%;
+  width: 1.6rem;
+  height: 1px;
+  background: var(--encre);
+}
+
+.annotation-flottante h4 .ligne::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--encre);
+  border-right: 1px solid var(--encre);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.annotation-flottante p,
+.annotation-flottante li {
+  /* le texte se resserre légèrement quand l'écran rétrécit,
+     pour rester dans sa zone */
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  color: var(--encre-douce);
+}
+
+.annotation-flottante ul {
+  list-style: none;
+  padding: 0;
+}
+
+.annotation-flottante li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 920px) {
+  /* Dès que l'espace manque pour les brackets, les annotations
+     s'empilent sous le template : lisible et sans chevauchement */
+  .schema-annote {
+    grid-template-columns: 1fr;
+  }
+
+  .schema-annote .schema-image {
+    max-width: 320px;
+  }
+
+  .schema-annotations {
+    position: static;
+  }
+
+  .annotation-flottante {
+    position: static;
+    height: auto;
+    margin-top: 1.5rem;
+  }
+
+  .annotation-flottante .ligne,
+  .annotation-flottante .bracket {
+    display: none;
+  }
+
+  .annotation-flottante p,
+  .annotation-flottante li {
+    font-size: 0.9rem; /* taille de lecture normale une fois empilé */
+  }
+}
+
+@media (max-width: 720px) {
+  /* Exemples de linktrees sur 2 colonnes */
+  .grille-telephones {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

@@ -24,6 +24,25 @@ Site original : https://jeromedorionportfolio.framer.website/
   question en plus petit, tags mono, temps de lecture avec icône de livre.
 - Code et commentaires en français.
 
+## Composants des pages projets (état actuel)
+
+- Sommaire collant à gauche (`.sommaire`, généré par main.js depuis les h2),
+  sections numérotées automatiquement « (01) » par compteur CSS.
+- Comparaisons Avant/Après (`.comparaison-annotee` + `.trois-col`/`.quatre-col`) :
+  maquettes PNG sans ombre, ratio 0.483, exports dans photos-a-trier/Radio-Canada/.
+- Annotations (`.annotation-point` + `.ligne` ou `.coude`) : EN FLUX NORMAL
+  (jamais position:absolute, sinon chevauchements). Ancrage vertical par
+  --marge en % de la largeur de colonne. Point collé à la maquette,
+  flèche vers le titre. Réglages fins faits à l'œil avec Jérôme.
+- Parcours utilisateurs (`.parcours`) : texte + constats à pastilles rouges
+  #e45a4b (couleur des schémas), schéma PNG à droite.
+- Stats animées (décompte de 0 à la valeur, main.js), vidéos Rémi
+  auto-lecture au défilement (la 2e avec son), mosaïque photos Rémi.
+- ATTENTION : bug récurrent de fichiers tronqués/corrompus en fin de fichier
+  (octets nuls). Si une page « casse » (sommaire disparu, vidéos mortes),
+  vérifier que le fichier se termine bien par </html> et que la balise
+  <script> est présente.
+
 ## À faire (idées en attente)
 
 - Créer la version anglaise (le bouton EN de la barre latérale pointe
